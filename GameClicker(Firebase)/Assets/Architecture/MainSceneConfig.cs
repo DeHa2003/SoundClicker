@@ -13,8 +13,8 @@ public class MainSceneConfig : SceneConfig
     {
         var interactorsMap = new Dictionary<Type, Interactor>();
 
-        //CreateInteractor<SettingsInteractor>(interactorsMap);
-        //CreateInteractor<AudioInteractor>(interactorsMap);
+        CreateInteractor<SettingsInteractor>(interactorsMap);
+        CreateInteractor<AudioInteractor>(interactorsMap);
         //CreateInteractor<NotificationInteractor>(interactorsMap);
         CreateInteractor<PanelAnimationInteractor>(interactorsMap);
         //CreateInteractor<ShopInteractor>(interactorsMap);
@@ -22,8 +22,6 @@ public class MainSceneConfig : SceneConfig
         CreateInteractor<UserInteractor>(interactorsMap);
         CreateInteractor<FirebaseAuthenticationInteractor>(interactorsMap);
         CreateInteractor<ScoreInteractor>(interactorsMap);
-        //CreateInteractor<BallsInteractor>(interactorsMap);
-        //CreateInteractor<BankInteractor>(interactorsMap);
 
         return interactorsMap;
     }
@@ -32,13 +30,11 @@ public class MainSceneConfig : SceneConfig
     {
         var repositoriesMap = new Dictionary<Type, Repository>();
 
-        //CreateRepository<SettingsRepository>(repositoriesMap);
+        CreateRepository<SettingsRepository>(repositoriesMap);
         //CreateRepository<ShopRepository>(repositoriesMap);
         CreateRepository<SongRepository>(repositoriesMap);
         CreateRepository<ScoreRepository>(repositoriesMap);
         CreateRepository<UserRepository>(repositoriesMap);
-        //CreateRepository<BallsRepository>(repositoriesMap);
-        //CreateRepository<BankRepository>(repositoriesMap);
 
         return repositoriesMap;
     }

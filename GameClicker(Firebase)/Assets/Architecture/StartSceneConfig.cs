@@ -15,15 +15,14 @@ using UnityEngine;
         var interactorsMap = new Dictionary<Type, Interactor>();
 
         CreateInteractor<FirebaseAuthenticationInteractor>(interactorsMap);
-        //CreateInteractor<SettingsInteractor>(interactorsMap);
-        //CreateInteractor<AudioInteractor>(interactorsMap);
+        CreateInteractor<SettingsInteractor>(interactorsMap);
+        CreateInteractor<AudioInteractor>(interactorsMap);
         CreateInteractor<NotificationInteractor>(interactorsMap);
         CreateInteractor<ScoreInteractor>(interactorsMap);
         CreateInteractor<PanelAnimationInteractor>(interactorsMap);
         CreateInteractor<WordRandomizerInteractor>(interactorsMap);
         CreateInteractor<UserInteractor>(interactorsMap);
         CreateInteractor<SongInteractor>(interactorsMap);
-        //CreateInteractor<BankInteractor>(interactorsMap);
         //CreateInteractor<ShopInteractor>(interactorsMap);
 
         return interactorsMap;
@@ -36,8 +35,7 @@ using UnityEngine;
         CreateRepository<UserRepository>(repositoriesMap);
         CreateRepository<ScoreRepository>(repositoriesMap);
         CreateRepository<SongRepository>(repositoriesMap);
-        //CreateRepository<SettingsRepository>(repositoriesMap);
-        //CreateRepository<BankRepository>(repositoriesMap);
+        CreateRepository<SettingsRepository>(repositoriesMap);
         //CreateRepository<ShopRepository>(repositoriesMap);
 
         return repositoriesMap;

@@ -10,6 +10,7 @@ public class StartScenePanelsControl : PanelsControl
     [SerializeField] private Panel chooseSongPanel;
     [SerializeField] private Panel registrationPanel;
     [SerializeField] private Panel avtorizationPanel;
+    [SerializeField] private Panel settingsPanel;
 
     public override void Initialize()
     {
@@ -21,8 +22,8 @@ public class StartScenePanelsControl : PanelsControl
         startMainPanel.Initialize();
         recordsPanel.Initialize();
         chooseSongPanel.Initialize();
-        //settingsPanel.Initialize();
-        //shopPanel.Initialize();
+        settingsPanel.Initialize();
+
         OpenPanel(startMainPanel);
     }
     public void ExitGame()

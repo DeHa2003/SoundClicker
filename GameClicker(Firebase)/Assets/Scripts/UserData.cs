@@ -21,10 +21,12 @@ public class UserData : MonoBehaviour
     private ScoreInteractor scoreInteractor;
     private FirebaseAuthenticationInteractor authenticationInteractor;
     private NotificationInteractor notificationInteractor;
+    private AudioInteractor audioInteractor;
     public void Initialize()
     {
         instance = this;
 
+        audioInteractor = Game.GetInteractor<AudioInteractor>();
         randomizerInteractor = Game.GetInteractor<WordRandomizerInteractor>();
         userInteractor = Game.GetInteractor<UserInteractor>();
         authenticationInteractor = Game.GetInteractor<FirebaseAuthenticationInteractor>();
@@ -109,18 +111,21 @@ public class UserData : MonoBehaviour
         if(userInteractor.NameUser == newNickname)
         {
             notificationInteractor.CreateNotification("<color=#ff0000>Error</color>", "Вы не изменили ник");
+            audioInteractor.PlayEffectSound("Error");
             return;
         }
 
         if (!regex.IsMatch(newNickname))
         {
             notificationInteractor.CreateNotification("<color=#ff0000>Error</color>", "Можно использовать только цифры, английские и русские буквы");
+            audioInteractor.PlayEffectSound("Error");
             return;
         }
 
         if (newNickname.Length < 3 || newNickname.Length > 15)
         {
             notificationInteractor.CreateNotification("<color=#ff0000>Error</color>", "Количество символов не меньше 3 и не больше 15");
+            audioInteractor.PlayEffectSound("Error");
             return;
         }
 
@@ -129,6 +134,7 @@ public class UserData : MonoBehaviour
             authenticationInteractor.databaseReference.Child("Users").Child(authenticationInteractor.Auth.CurrentUser.UserId).Child("Name").SetValueAsync(newNickname);
         }
 
+        audioInteractor.PlayEffectSound("Uvedom");
         notificationInteractor.CreateNotification("Message", "Новый никнейм - <color=#53A5FF>" + newNickname);
 
         userInteractor.SetData(newNickname);

@@ -7,11 +7,10 @@ public class AudioManager : MonoBehaviour
     [Header("Audio resources")]
     [SerializeField] private AudioSource backgroundSource;
     [SerializeField] private AudioSource effectSource;
-    private AudioSource otherSource;
+    [SerializeField] private AudioSource otherSound;
     [Header("Audio clips")]
     [SerializeField] private AudioClip[] backgroundClips;
     [SerializeField] private AudioClip[] otherClips;
-
 
 
     public void PlayBackgroundSound(string clipName)
@@ -21,7 +20,14 @@ public class AudioManager : MonoBehaviour
 
     public void PlayEffectSound(string clipName)
     {
-        PlaySound(clipName, otherClips, effectSource);
+        if (!effectSource.isPlaying)
+        {
+            PlaySound(clipName, otherClips, effectSource);
+        }
+        else
+        {
+            PlaySound(clipName, otherClips, otherSound);
+        }
     }
 
     public void PlayOtherSound(AudioSource audioSource, string clipName, float volume, float spatialBlend)
@@ -48,6 +54,7 @@ public class AudioManager : MonoBehaviour
     public void ChangeVolumeEffectsSound(float value)
     {
         ChangeVolume(effectSource, value);
+        ChangeVolume(otherSound, value);
     }
 
 
@@ -62,8 +69,7 @@ public class AudioManager : MonoBehaviour
         AudioClip audioClip = GetAudioClipByName(clipName, clips);
         if(audioClip != null)
         {
-            audioSource.clip = audioClip;
-            audioSource.Play();
+            audioSource.PlayOneShot(audioClip);
         }
         else
         {

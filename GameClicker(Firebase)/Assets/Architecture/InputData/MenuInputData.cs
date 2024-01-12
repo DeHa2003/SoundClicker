@@ -9,21 +9,21 @@ public class MenuInputData : MonoBehaviour
     [SerializeField] protected NotificationControl notificationControl;
     [SerializeField] protected Notification notification;
 
-    //[Header("Audio")]
-    //[SerializeField] protected AudioManager audioManager;
+    [Header("Audio")]
+    [SerializeField] protected AudioManager audioManager;
 
     private NotificationInteractor notificationInteractor;
-    //private AudioInteractor audioInteractor;
-    //private SettingsInteractor settingsInteractor;
+    private AudioInteractor audioInteractor;
+    private SettingsInteractor settingsInteractor;
     public void Initialize()
     {
 
-        //audioInteractor = Game.GetInteractor<AudioInteractor>();
+        audioInteractor = Game.GetInteractor<AudioInteractor>();
         notificationInteractor = Game.GetInteractor<NotificationInteractor>();
-        //settingsInteractor = Game.GetInteractor<SettingsInteractor>();
+        settingsInteractor = Game.GetInteractor<SettingsInteractor>();
 
-        //audioInteractor.SetData(audioManager, "Menu");
+        audioInteractor.SetData(audioManager, "Menu");
         notificationInteractor.SetData(notification, notificationControl);
-        //settingsInteractor.SetData(audioManager);
+        settingsInteractor.SetData(audioManager);
     }
 }

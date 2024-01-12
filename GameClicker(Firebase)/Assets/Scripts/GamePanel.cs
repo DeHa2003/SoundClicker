@@ -5,21 +5,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GamePanel : Panel
+public class GamePanel : MovePanel
 {
     [SerializeField] private SaveUserData saveUserData;
     [SerializeField] private SoundsManager soundsManager;
 
     private Tween tweenMove;
-
-    private PanelAnimationInteractor animationInteractor;
     private SongInteractor songInteractor;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        animationInteractor = Game.GetInteractor<PanelAnimationInteractor>();
         songInteractor = Game.GetInteractor<SongInteractor>();
         songInteractor.Play();
 

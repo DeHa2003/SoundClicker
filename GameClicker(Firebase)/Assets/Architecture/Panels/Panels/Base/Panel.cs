@@ -8,15 +8,15 @@ public abstract class Panel : MonoBehaviour
 {
     [SerializeField] private protected GameObject panel;
 
-    //protected AudioInteractor audioInteractor;
+    protected AudioInteractor audioInteractor;
     public virtual void Initialize() 
-    { 
-        //audioInteractor = Game.GetInteractor<AudioInteractor>(); 
+    {
+        audioInteractor = Game.GetInteractor<AudioInteractor>();
     }
     public virtual void OpenPanel() 
     { 
-        panel.SetActive(true); 
-        //audioInteractor.PlayEffectSound("OpenMain"); 
+        panel.SetActive(true);
+        audioInteractor.PlayEffectSound("OpenMain");
     }
     public virtual void ClosePanel() 
     { 
