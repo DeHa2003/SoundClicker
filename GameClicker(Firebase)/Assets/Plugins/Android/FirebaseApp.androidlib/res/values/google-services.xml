@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id">
+  <string name="firebase_database_url" translatable="false">https://soundclicker-cd631-default-rtdb.firebaseio.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">836148836982</string>
+  <string name="google_storage_bucket" translatable="false">soundclicker-cd631.appspot.com</string>
+  <string name="project_id" translatable="false">soundclicker-cd631</string>
+  <string name="google_api_key" translatable="false">AIzaSyCjPT-OhbVe5omBiO6ukABTL7mkNZS_Nlg</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCjPT-OhbVe5omBiO6ukABTL7mkNZS_Nlg</string>
+  <string name="google_app_id" translatable="false">1:836148836982:android:bbcafc33ea89ae083ffd57</string>
+  <string name="default_web_client_id" translatable="false">836148836982-lemlljsao0d7mub0gic9tepd770uoqod.apps.googleusercontent.com</string>
+</resources>
