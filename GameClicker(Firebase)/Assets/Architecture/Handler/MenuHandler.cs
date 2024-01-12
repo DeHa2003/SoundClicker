@@ -12,21 +12,6 @@ public class MenuHandler : Handler
     [SerializeField] private UserData userData;
     [SerializeField] private FirebaseGlobalEvents globalEvents;
     [SerializeField] private MenuInputData inputData;
-    //protected override void Awake()
-    //{
-    //    FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
-    //    {
-    //        if (task.IsCompleted)
-    //        {
-    //            Game.Run(new StartSceneManager());
-    //            base.Awake();
-    //        }
-    //        else
-    //        {
-    //            Debug.LogError($"Failed to initialize Firebase: {task.Exception}");
-    //        }
-    //    });
-    //}
 
     protected override void Awake()
     {

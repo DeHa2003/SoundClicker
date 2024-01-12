@@ -22,7 +22,7 @@ public class FirebaseGlobalEvents : MonoBehaviour
         authenticationInteractor.OnErrorRegister += OnErrorRegister;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         authenticationInteractor.OnUserSignInToAccount -= OnUserSignInToAccount;
         authenticationInteractor.OnUserSignOutToAccount -= OnUserSignOutToAccount;
