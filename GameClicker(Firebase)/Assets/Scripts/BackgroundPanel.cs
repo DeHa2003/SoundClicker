@@ -33,7 +33,7 @@ public class BackgroundPanel : Panel
     {
         if (tweenMove != null) { tweenMove.Kill(); transform.localPosition = Vector3.zero; }
 
-        tweenMove = animationInteractor.Shake(transform, 10, 13, 2, 400);
+        tweenMove = animationInteractor.Shake(transform, 10, 13, 4, 400);
 
         //tweenMove = transform.DOShakePosition(10, 20, 3, 400, false, false, ShakeRandomnessMode.Full);
 

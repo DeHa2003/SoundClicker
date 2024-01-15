@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Lessons.Architecture
 {
-    public class SettingsRepository : Repository
+    public class AudioVolumeRepository : Repository
     {
         public float volumeBackgroundAudioSource;
         public float volumeEffectsAudioSource;
@@ -18,11 +18,11 @@ namespace Lessons.Architecture
 
         public override void Initialize()
         {
-            if (File.Exists(Application.persistentDataPath + "/SettingsData.fun"))
+            if (File.Exists(Application.persistentDataPath + "/VolumeSounds.fun"))
             {
-                SettingsData settingsData = GetSettingsData();
-                volumeBackgroundAudioSource = settingsData.volumeBackgroundAudioSource;
-                volumeEffectsAudioSource = settingsData.volumeEffectsAudioSource;
+                VolumeSounds volumeSounds = GetSettingsData();
+                volumeBackgroundAudioSource = volumeSounds.volumeBackgroundAudioSource;
+                volumeEffectsAudioSource = volumeSounds.volumeEffectsAudioSource;
             }
             else
             {
@@ -33,24 +33,24 @@ namespace Lessons.Architecture
         public override void Save()
         {
             BinaryFormatter binaryFormatter = new BinaryFormatter();
-            string path = Application.persistentDataPath + "/SettingsData.fun";
+            string path = Application.persistentDataPath + "/VolumeSounds.fun";
             FileStream stream = new FileStream(path, FileMode.Create);
 
-            SettingsData settingsData = new SettingsData(volumeBackgroundAudioSource, volumeEffectsAudioSource);
+            VolumeSounds settingsData = new(volumeBackgroundAudioSource, volumeEffectsAudioSource);
 
             binaryFormatter.Serialize(stream, settingsData);
             stream.Close();
         }
 
-        public SettingsData GetSettingsData()
+        public VolumeSounds GetSettingsData()
         {
-            string path = Application.persistentDataPath + "/SettingsData.fun";
+            string path = Application.persistentDataPath + "/VolumeSounds.fun";
             if (File.Exists(path))
             {
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
                 FileStream stream = new FileStream(path, FileMode.Open);
 
-                SettingsData settingsData = binaryFormatter.Deserialize(stream) as SettingsData;
+                VolumeSounds settingsData = binaryFormatter.Deserialize(stream) as VolumeSounds;
                 stream.Close();
 
                 return settingsData;
@@ -64,12 +64,12 @@ namespace Lessons.Architecture
     }
 
     [System.Serializable]
-    public class SettingsData
+    public class VolumeSounds
     {
-        public float volumeBackgroundAudioSource;
-        public float volumeEffectsAudioSource;
+        public float volumeBackgroundAudioSource { get; private set; }
+        public float volumeEffectsAudioSource { get; private set; }
 
-        public SettingsData(float volumeBackgroundAudio, float volumeEffectsAudioSource)
+        public VolumeSounds(float volumeBackgroundAudio, float volumeEffectsAudioSource)
         {
             this.volumeBackgroundAudioSource = volumeBackgroundAudio;
             this.volumeEffectsAudioSource = volumeEffectsAudioSource;

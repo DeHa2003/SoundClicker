@@ -25,6 +25,11 @@ public class Sound : MonoBehaviour, IPointerDownHandler
         m_AudioSource.volume = volume;
     }
 
+    public void SetData(float value)
+    {
+        m_AudioSource.pitch = value;
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
         scoreInteractor.AddScore(this, 1);

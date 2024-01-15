@@ -105,7 +105,10 @@ namespace Lessons.Architecture
                 yield break;
             }
 
-            SignOut();
+            if (task.IsCompleted)
+            {
+                SignOut();
+            }
         }
 
         public string GetEmail()

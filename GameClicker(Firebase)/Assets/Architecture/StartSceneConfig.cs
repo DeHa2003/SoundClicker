@@ -35,7 +35,8 @@ using UnityEngine;
         CreateRepository<UserRepository>(repositoriesMap);
         CreateRepository<ScoreRepository>(repositoriesMap);
         CreateRepository<SongRepository>(repositoriesMap);
-        CreateRepository<SettingsRepository>(repositoriesMap);
+        CreateRepository<AudioVolumeRepository>(repositoriesMap);
+        CreateRepository<PitchInstrumentsRepository>(repositoriesMap);
         //CreateRepository<ShopRepository>(repositoriesMap);
 
         return repositoriesMap;

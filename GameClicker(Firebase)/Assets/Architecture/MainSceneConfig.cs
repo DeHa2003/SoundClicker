@@ -30,7 +30,8 @@ public class MainSceneConfig : SceneConfig
     {
         var repositoriesMap = new Dictionary<Type, Repository>();
 
-        CreateRepository<SettingsRepository>(repositoriesMap);
+        CreateRepository<AudioVolumeRepository>(repositoriesMap);
+        CreateRepository<PitchInstrumentsRepository>(repositoriesMap);
         //CreateRepository<ShopRepository>(repositoriesMap);
         CreateRepository<SongRepository>(repositoriesMap);
         CreateRepository<ScoreRepository>(repositoriesMap);

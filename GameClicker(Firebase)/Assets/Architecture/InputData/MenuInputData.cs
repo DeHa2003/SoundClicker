@@ -15,9 +15,9 @@ public class MenuInputData : MonoBehaviour
     private NotificationInteractor notificationInteractor;
     private AudioInteractor audioInteractor;
     private SettingsInteractor settingsInteractor;
+
     public void Initialize()
     {
-
         audioInteractor = Game.GetInteractor<AudioInteractor>();
         notificationInteractor = Game.GetInteractor<NotificationInteractor>();
         settingsInteractor = Game.GetInteractor<SettingsInteractor>();

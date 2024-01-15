@@ -7,9 +7,17 @@ using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
 {
-    [Header("Sliders")]
+    [Header("Volumes")]
     [SerializeField] private Slider volumeBackgroundAudioSlider;
     [SerializeField] private Slider volumeEffectsAudioSlider;
+    [Header("Pitch instruments")]
+    [SerializeField] private Slider pitchBass;
+    [SerializeField] private Slider pitchBass_2;
+    [SerializeField] private Slider pitchTenorTeam;
+    [SerializeField] private Slider pitchAltTom;
+    [SerializeField] private Slider pitchHayHet;
+    [SerializeField] private Slider pitchRide;
+    [SerializeField] private Slider pitchCrash;
 
     [Header("Texts")]
     [SerializeField] private TextMeshProUGUI textVolumeBackground;
@@ -36,8 +44,10 @@ public class Settings : MonoBehaviour
         volumeBackgroundAudioSlider.onValueChanged.RemoveListener(delegate { ChangeVolumeBackground(); });
         volumeEffectsAudioSlider.onValueChanged.RemoveListener(delegate { ChangeVolumeEffects(); });
 
-        settingsInteractor.ApplyChanges();
+        settingsInteractor.Save();
     }
+
+
 
     private void ChangeVolumeBackground()
     {
