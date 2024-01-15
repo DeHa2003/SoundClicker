@@ -32,8 +32,26 @@ namespace Lessons.Architecture
             }
             else
             {
+                pitchBass = 1;
+                pitchBass_2 = 1;
+                pitchTenorTom = 1;
+                pitchAltTom = 1.3f;
+                pitchHayHet = 1;
+                pitchRide = 1;
+                pitchCrash = 1;
                 Save();
             }
+        }
+
+        public void SetData(float bass, float bass2, float tenor, float alt, float hayHet, float ride, float crash)
+        {
+            this.pitchBass = bass;
+            this.pitchBass_2 = bass2;
+            this.pitchTenorTom = tenor;
+            this.pitchAltTom = alt;
+            this.pitchHayHet = hayHet;
+            this.pitchRide = ride;
+            this.pitchCrash = crash;
         }
 
         public override void Save()

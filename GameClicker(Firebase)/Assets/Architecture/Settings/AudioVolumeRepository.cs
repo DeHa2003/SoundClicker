@@ -30,6 +30,12 @@ namespace Lessons.Architecture
             }
         }
 
+        public void SetData(float volumeBackground, float volumeEffects)
+        {
+            this.volumeBackgroundAudioSource = volumeBackground;
+            this.volumeEffectsAudioSource = volumeEffects;
+        }
+
         public override void Save()
         {
             BinaryFormatter binaryFormatter = new BinaryFormatter();

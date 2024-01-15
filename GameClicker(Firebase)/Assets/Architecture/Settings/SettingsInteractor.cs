@@ -67,49 +67,41 @@ namespace Lessons.Architecture
             audioManager.ChangeVolumeEffectsSound(value);
         }
 
-        public void ChangePitchBass(int value)
+        public void ChangePitchBass(float value)
         {
             pitchBass = value;
         }
-        public void ChangePitchBass_2(int value)
+        public void ChangePitchBass_2(float value)
         {
             pitchBass_2 = value;
         }
-        public void ChangePitchTenor(int value)
+        public void ChangePitchTenor(float value)
         {
             pitchTenorTom = value;
         }
-        public void ChangePitchAlt(int value)
+        public void ChangePitchAlt(float value)
         {
             pitchAltTom = value;
         }
-        public void ChangePitchHayHet(int value)
+        public void ChangePitchHayHet(float value)
         {
             pitchHayHet = value;
         }
-        public void ChangePitchRide(int value)
+        public void ChangePitchRide(float value)
         {
             pitchRide = value;
         }
-        public void ChangePitchCrash(int value)
+        public void ChangePitchCrash(float value)
         {
             pitchCrash = value;
         }
 
         public void Save()
         {
-            audioVolumeRepository.volumeBackgroundAudioSource = volumeBackgroundAudioSource;
-            audioVolumeRepository.volumeEffectsAudioSource = volumeEffectsAudioSource;
+            audioVolumeRepository.SetData(volumeBackgroundAudioSource, volumeEffectsAudioSource);
             audioVolumeRepository.Save();
 
-            pitchRepository.pitchBass = pitchBass;
-            pitchRepository.pitchBass_2 = pitchBass_2;
-            pitchRepository.pitchTenorTom = pitchTenorTom;
-            pitchRepository.pitchAltTom = pitchAltTom;
-            pitchRepository.pitchHayHet = pitchHayHet;
-            pitchRepository.pitchRide = pitchRide;
-            pitchRepository.pitchCrash = pitchCrash;
-
+            pitchRepository.SetData(pitchBass, pitchBass_2, pitchTenorTom, pitchAltTom, pitchHayHet, pitchRide, pitchCrash);
             pitchRepository.Save();
         }
 
