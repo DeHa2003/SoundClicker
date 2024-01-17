@@ -657,7 +657,6 @@ MonoBehaviour:
   m_AudioSource: {fileID: 210747445}
   clip: {fileID: 8300000, guid: bca62ccdd0aecc34b8892f09a0583f26, type: 3}
   volume: 0.3
-  pitch: 1
 --- !u!114 &210747444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1111,7 +1110,6 @@ MonoBehaviour:
   m_AudioSource: {fileID: 255650277}
   clip: {fileID: 8300000, guid: 6ceb8168789b7d34f94079f629ec3743, type: 3}
   volume: 0.4
-  pitch: 1.3
 --- !u!114 &255650276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1361,7 +1359,6 @@ MonoBehaviour:
   m_AudioSource: {fileID: 344334484}
   clip: {fileID: 8300000, guid: a863c68c5ff6f4c4db9a39bc703a182f, type: 3}
   volume: 1
-  pitch: 1
 --- !u!114 &344334483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1751,7 +1748,6 @@ MonoBehaviour:
   m_AudioSource: {fileID: 561988387}
   clip: {fileID: 8300000, guid: 6ceb8168789b7d34f94079f629ec3743, type: 3}
   volume: 0.3
-  pitch: 1
 --- !u!114 &561988386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2802,7 +2798,6 @@ MonoBehaviour:
   m_AudioSource: {fileID: 1194014836}
   clip: {fileID: 8300000, guid: 4c06ab5f359656b4881c7a038b0f6dbb, type: 3}
   volume: 1
-  pitch: 1
 --- !u!114 &1194014835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3387,7 +3382,6 @@ MonoBehaviour:
   m_AudioSource: {fileID: 1591022120}
   clip: {fileID: 8300000, guid: 379209ec85f7d3848aa0820d6a070d98, type: 3}
   volume: 1
-  pitch: 1
 --- !u!114 &1591022119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3760,7 +3754,6 @@ MonoBehaviour:
   m_AudioSource: {fileID: 1785842165}
   clip: {fileID: 8300000, guid: c9f5fa2a217476c43aaad113d645209f, type: 3}
   volume: 0.2
-  pitch: 1
 --- !u!114 &1785842164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4052,9 +4045,9 @@ MonoBehaviour:
   panel: {fileID: 1904424493}
   from: {x: -300, y: 0, z: 0}
   to: {x: 0, y: 0, z: 0}
-  time: 0.4
+  time: 0.3
   canvasGroup: {fileID: 1904424496}
-  timeToTransition: 2
+  timeToTransition: 1
 --- !u!225 &1904424496
 CanvasGroup:
   m_ObjectHideFlags: 0
