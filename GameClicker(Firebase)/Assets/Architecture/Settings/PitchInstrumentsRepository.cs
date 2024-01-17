@@ -8,13 +8,13 @@ namespace Lessons.Architecture
 {
     public class PitchInstrumentsRepository :Repository
     {
-        public float pitchBass;
-        public float pitchBass_2;
-        public float pitchTenorTom;
-        public float pitchAltTom;
-        public float pitchHayHet;
-        public float pitchRide;
-        public float pitchCrash;
+        public float pitchBass { get; private set; }
+        public float pitchBass_2 { get; private set; }
+        public float pitchTenorTom { get; private set; }
+        public float pitchAltTom { get; private set; }
+        public float pitchHayHet { get; private set; }
+        public float pitchRide { get; private set; }
+        public float pitchCrash { get; private set; }
 
         public override void Initialize()
         {
@@ -90,13 +90,13 @@ namespace Lessons.Architecture
     [System.Serializable]
     public class PitchInstrumentsSounds
     {
-        public float bass { get; private set; }
-        public float bass_2 { get; private set; }
-        public float tenorTom { get; private set; }
-        public float altTom { get; private set; }
-        public float hayHet { get; private set; }
-        public float ride { get; private set; }
-        public float crash { get; private set; }
+        public float bass;
+        public float bass_2;
+        public float tenorTom;
+        public float altTom;
+        public float hayHet;
+        public float ride;
+        public float crash;
 
         public PitchInstrumentsSounds(float bass, float bass_2, float tenorTom, float altTom, float hayHet, float ride, float crash)
         {

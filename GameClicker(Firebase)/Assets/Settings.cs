@@ -8,10 +8,38 @@ using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
 {
-    [Header("Volumes")]
-    [SerializeField] private Slider volumeBackgroundAudioSlider;
-    [SerializeField] private Slider volumeEffectsAudioSlider;
-    [Header("Pitch instruments")]
+    [SerializeField] private GeneralSettings generalSettings;
+    [SerializeField] private InstrumentsSettings instrumentsSettings;
+
+    public void Initialize()
+    {
+        generalSettings.Initialize();
+        instrumentsSettings.Initialize();
+
+        generalSettings.VisualizeVolumeSounds();
+        instrumentsSettings.VisualizePitchInstruments();
+    }
+
+    private void OnDestroy()
+    {
+        generalSettings.SaveGeneralSettings();
+        instrumentsSettings.SaveInstrumentsSettings();
+    }
+}
+
+[Serializable]
+public class InstrumentsSettings : IInstrumentsSettings
+{
+    [Header("Texts")]
+    [SerializeField] private TextMeshProUGUI pitchBassTextMesh;
+    [SerializeField] private TextMeshProUGUI pitchBass_2TextMesh;
+    [SerializeField] private TextMeshProUGUI pitchTenorTomTextMesh;
+    [SerializeField] private TextMeshProUGUI pitchAltTomTextMesh;
+    [SerializeField] private TextMeshProUGUI pitchHayHetTextMesh;
+    [SerializeField] private TextMeshProUGUI pitchRideTextMesh;
+    [SerializeField] private TextMeshProUGUI pitchCrashTextMesh;
+
+    [Header("Sliders")]
     [SerializeField] private Slider pitchBassSlider;
     [SerializeField] private Slider pitchBass_2Slider;
     [SerializeField] private Slider pitchTenorTomSlider;
@@ -20,17 +48,35 @@ public class Settings : MonoBehaviour
     [SerializeField] private Slider pitchRideSlider;
     [SerializeField] private Slider pitchCrashSlider;
 
-    [Header("Texts")]
-    [SerializeField] private TextMeshProUGUI textVolumeBackground;
-    [SerializeField] private TextMeshProUGUI textVolumeEffects;
+    public Slider pitchBass => pitchBassSlider;
 
-    [SerializeField] private TextMeshProUGUI pitchBassText;
-    [SerializeField] private TextMeshProUGUI pitchBass_2Text;
-    [SerializeField] private TextMeshProUGUI pitchTenorTomText;
-    [SerializeField] private TextMeshProUGUI pitchAltTomText;
-    [SerializeField] private TextMeshProUGUI pitchHayHetText;
-    [SerializeField] private TextMeshProUGUI pitchRideText;
-    [SerializeField] private TextMeshProUGUI pitchCrashText;
+    public Slider pitchBass_2 => pitchBass_2Slider;
+
+    public Slider pitchTenorTom => pitchTenorTomSlider;
+
+    public Slider pitchAltTom => pitchAltTomSlider;
+
+    public Slider pitchHayHet => pitchHayHetSlider;
+
+    public Slider pitchRide => pitchRideSlider;
+
+    public Slider pitchCrash => pitchCrashSlider;
+
+    public TextMeshProUGUI pitchBassText => pitchBassTextMesh;
+
+    public TextMeshProUGUI pitchBass_2Text => pitchBass_2TextMesh;
+
+    public TextMeshProUGUI pitchTenorTomText => pitchTenorTomTextMesh;
+
+    public TextMeshProUGUI pitchAltTomText => pitchAltTomTextMesh;
+
+    public TextMeshProUGUI pitchHayHetText => pitchHayHetTextMesh;
+
+    public TextMeshProUGUI pitchRideText => pitchRideTextMesh;
+
+    public TextMeshProUGUI pitchCrashText => pitchCrashTextMesh;
+
+
 
     private SettingsInteractor settingsInteractor;
 
@@ -38,48 +84,55 @@ public class Settings : MonoBehaviour
     {
         settingsInteractor = Game.GetInteractor<SettingsInteractor>();
 
+        pitchBass.onValueChanged.AddListener(delegate
+        {
+            TextFloat(pitchBass, pitchBassText);
+            settingsInteractor.ChangePitchBass(pitchBass.value);
+        });
 
-        volumeBackgroundAudioSlider.onValueChanged.AddListener(delegate { ChangeVolumeBackground(); });
-        volumeEffectsAudioSlider.onValueChanged.AddListener(delegate { ChangeVolumeEffects(); });
+        pitchBass_2.onValueChanged.AddListener(delegate
+        {
+            TextFloat(pitchBass_2, pitchBass_2Text);
+            settingsInteractor.ChangePitchBass_2(pitchBass_2.value);
+        });
 
-        pitchBassSlider.onValueChanged.AddListener(delegate { ChangePitchBass(); });
-        pitchBass_2Slider.onValueChanged.AddListener(delegate { ChangePitchBass_2(); });
-        pitchTenorTomSlider.onValueChanged.AddListener(delegate { ChangePitchTenor(); });
-        pitchAltTomSlider.onValueChanged.AddListener(delegate { ChangePitchAlt(); });
-        pitchHayHetSlider.onValueChanged.AddListener(delegate { ChangePitchHayHet(); });
-        pitchRideSlider.onValueChanged.AddListener(delegate { ChangePitchRide(); });
-        pitchCrashSlider.onValueChanged.AddListener(delegate { ChangePitchCrash(); });
+        pitchTenorTom.onValueChanged.AddListener(delegate
+        {
+            TextFloat(pitchTenorTom, pitchTenorTomText);
+            settingsInteractor.ChangePitchTenor(pitchTenorTom.value);
+        });
 
-        VisualizeVolumeSounds();
-        VisualizePitchInstruments();
+        pitchAltTom.onValueChanged.AddListener(delegate
+        {
+            TextFloat(pitchAltTom, pitchAltTomText);
+            settingsInteractor.ChangePitchAlt(pitchAltTom.value);
+        });
+
+        pitchHayHet.onValueChanged.AddListener(delegate
+        {
+            TextFloat(pitchHayHet, pitchHayHetText);
+            settingsInteractor.ChangePitchHayHet(pitchHayHet.value);
+        });
+
+        pitchRide.onValueChanged.AddListener(delegate
+        {
+            TextFloat(pitchRide, pitchRideText);
+            settingsInteractor.ChangePitchRide(pitchRide.value);
+        });
+
+        pitchCrash.onValueChanged.AddListener(delegate
+        {
+            TextFloat(pitchCrash, pitchCrashText);
+            settingsInteractor.ChangePitchCrash(pitchCrash.value);
+        });
     }
 
-    private void OnDestroy()
+    private void TextFloat(Slider slider, TextMeshProUGUI text)
     {
-        volumeBackgroundAudioSlider.onValueChanged.RemoveListener(delegate { ChangeVolumeBackground(); });
-        volumeEffectsAudioSlider.onValueChanged.RemoveListener(delegate { ChangeVolumeEffects(); });
-
-        pitchBassSlider.onValueChanged.RemoveListener(delegate { ChangePitchBass(); });
-        pitchBass_2Slider.onValueChanged.RemoveListener(delegate { ChangePitchBass_2(); });
-        pitchTenorTomSlider.onValueChanged.RemoveListener(delegate { ChangePitchTenor(); });
-        pitchAltTomSlider.onValueChanged.RemoveListener(delegate { ChangePitchAlt(); });
-        pitchHayHetSlider.onValueChanged.RemoveListener(delegate { ChangePitchHayHet(); });
-        pitchRideSlider.onValueChanged.RemoveListener(delegate { ChangePitchRide(); });
-        pitchCrashSlider.onValueChanged.RemoveListener(delegate { ChangePitchCrash(); });
-
-        settingsInteractor.Save();
+        text.text = Math.Round(slider.value, 2).ToString();
     }
 
-    private void VisualizeVolumeSounds()
-    {
-        volumeBackgroundAudioSlider.value = settingsInteractor.volumeBackgroundAudioSource;
-        volumeEffectsAudioSlider.value = settingsInteractor.volumeEffectsAudioSource;
-
-        TextProcent(volumeBackgroundAudioSlider, textVolumeBackground);
-        TextProcent(volumeEffectsAudioSlider, textVolumeEffects);
-    }
-
-    private void VisualizePitchInstruments()
+    public void VisualizePitchInstruments()
     {
         pitchBassSlider.value = settingsInteractor.pitchBass;
         pitchBass_2Slider.value = settingsInteractor.pitchBass_2;
@@ -98,63 +151,59 @@ public class Settings : MonoBehaviour
         TextFloat(pitchCrashSlider, pitchCrashText);
     }
 
+    public void SaveInstrumentsSettings()
+    {
+        settingsInteractor.SaveInstrumentsSettings();
+    }
+}
 
+[Serializable]
+public class GeneralSettings : IGeneralSettings
+{
+    [Header("Volumes")]
+    [SerializeField] private Slider volumeBackgroundAudioSlider;
+    [SerializeField] private Slider volumeEffectsAudioSlider;
+
+    [Header("Texts")]
+    [SerializeField] private TextMeshProUGUI textVolumeBackground;
+    [SerializeField] private TextMeshProUGUI textVolumeEffects;
+
+    public Slider volumeBackgroundSound => volumeBackgroundAudioSlider;
+
+    public Slider volumeEffectsSounds => volumeEffectsAudioSlider;
+
+    public TextMeshProUGUI volumeBackgroundText => textVolumeBackground;
+
+    public TextMeshProUGUI volumeEffectsText => textVolumeEffects;
+
+
+
+    private SettingsInteractor settingsInteractor;
+
+    public void Initialize()
+    {
+        settingsInteractor = Game.GetInteractor<SettingsInteractor>();
+
+        volumeBackgroundAudioSlider.onValueChanged.AddListener(delegate { ChangeVolumeBackground(); });
+        volumeEffectsAudioSlider.onValueChanged.AddListener(delegate { ChangeVolumeEffects(); });
+
+    }
+
+    public void SaveGeneralSettings()
+    {
+        settingsInteractor.SaveGeneralSettings();
+    }
 
     private void ChangeVolumeBackground()
     {
-        settingsInteractor.ChangeVolumeBackgroundSound(this.name, volumeBackgroundAudioSlider.value);
+        settingsInteractor.ChangeVolumeBackgroundSound(this, volumeBackgroundAudioSlider.value);
         TextProcent(volumeBackgroundAudioSlider, textVolumeBackground);
     }
 
     private void ChangeVolumeEffects()
     {
-        settingsInteractor.ChangeVolumeEffectsSound(this.name, volumeEffectsAudioSlider.value);
+        settingsInteractor.ChangeVolumeEffectsSound(this, volumeEffectsAudioSlider.value);
         TextProcent(volumeEffectsAudioSlider, textVolumeEffects);
-    }
-
-
-
-
-    private void ChangePitchBass()
-    {
-        settingsInteractor.ChangePitchBass(pitchBassSlider.value);
-        TextFloat(pitchBassSlider, pitchBassText);
-    }
-
-    private void ChangePitchBass_2()
-    {
-        settingsInteractor.ChangePitchBass_2(pitchBass_2Slider.value);
-        TextFloat(pitchBass_2Slider, pitchBass_2Text);
-    }
-
-    private void ChangePitchTenor()
-    {
-        settingsInteractor.ChangePitchTenor(pitchTenorTomSlider.value);
-        TextFloat(pitchTenorTomSlider, pitchTenorTomText);
-    }
-
-    private void ChangePitchAlt()
-    {
-        settingsInteractor.ChangePitchAlt(pitchAltTomSlider.value);
-        TextFloat(pitchAltTomSlider, pitchAltTomText);
-    }
-
-    private void ChangePitchHayHet()
-    {
-        settingsInteractor.ChangePitchHayHet(pitchHayHetSlider.value);
-        TextFloat(pitchHayHetSlider, pitchHayHetText);
-    }
-
-    private void ChangePitchRide()
-    {
-        settingsInteractor.ChangePitchRide(pitchRideSlider.value);
-        TextFloat(pitchRideSlider, pitchRideText);
-    }
-
-    private void ChangePitchCrash()
-    {
-        settingsInteractor.ChangePitchCrash(pitchCrashSlider.value);
-        TextFloat(pitchCrashSlider, pitchCrashText);
     }
 
     private void TextProcent(Slider slider, TextMeshProUGUI text)
@@ -162,8 +211,41 @@ public class Settings : MonoBehaviour
         text.text = Mathf.Round(slider.value * 100).ToString();
     }
 
-    private void TextFloat(Slider slider, TextMeshProUGUI text)
+    public void VisualizeVolumeSounds()
     {
-        text.text = Math.Round(slider.value, 2).ToString();
+        volumeBackgroundAudioSlider.value = settingsInteractor.volumeBackgroundAudioSource;
+        volumeEffectsAudioSlider.value = settingsInteractor.volumeEffectsAudioSource;
+
+        TextProcent(volumeBackgroundAudioSlider, textVolumeBackground);
+        TextProcent(volumeEffectsAudioSlider, textVolumeEffects);
     }
+}
+
+
+
+public interface IInstrumentsSettings
+{
+    public Slider pitchBass { get; }
+    public Slider pitchBass_2 { get; }
+    public Slider pitchTenorTom { get; }
+    public Slider pitchAltTom { get; }
+    public Slider pitchHayHet { get; }
+    public Slider pitchRide { get; }
+    public Slider pitchCrash { get; }
+
+    public TextMeshProUGUI pitchBassText { get; }
+    public TextMeshProUGUI pitchBass_2Text { get; }
+    public TextMeshProUGUI pitchTenorTomText { get; }
+    public TextMeshProUGUI pitchAltTomText { get; }
+    public TextMeshProUGUI pitchHayHetText { get; }
+    public TextMeshProUGUI pitchRideText { get; }
+    public TextMeshProUGUI pitchCrashText { get; }
+}
+public interface IGeneralSettings
+{
+    public Slider volumeBackgroundSound { get; }
+    public Slider volumeEffectsSounds { get; }
+
+    public TextMeshProUGUI volumeBackgroundText { get; }
+    public TextMeshProUGUI volumeEffectsText { get; }
 }

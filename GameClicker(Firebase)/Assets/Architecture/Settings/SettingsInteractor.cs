@@ -67,6 +67,7 @@ namespace Lessons.Architecture
             audioManager.ChangeVolumeEffectsSound(value);
         }
 
+
         public void ChangePitchBass(float value)
         {
             pitchBass = value;
@@ -96,11 +97,13 @@ namespace Lessons.Architecture
             pitchCrash = value;
         }
 
-        public void Save()
+        public void SaveGeneralSettings()
         {
             audioVolumeRepository.SetData(volumeBackgroundAudioSource, volumeEffectsAudioSource);
             audioVolumeRepository.Save();
-
+        }
+        public void SaveInstrumentsSettings()
+        {
             pitchRepository.SetData(pitchBass, pitchBass_2, pitchTenorTom, pitchAltTom, pitchHayHet, pitchRide, pitchCrash);
             pitchRepository.Save();
         }
