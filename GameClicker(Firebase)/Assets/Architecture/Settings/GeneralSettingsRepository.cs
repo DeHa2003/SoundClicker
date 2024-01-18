@@ -7,10 +7,16 @@ using UnityEngine;
 
 namespace Lessons.Architecture
 {
-    public class AudioVolumeRepository : Repository
+    public class GeneralSettingsRepository : Repository
     {
-        public float volumeBackgroundAudioSource;
-        public float volumeEffectsAudioSource;
+        public float volumeBackgroundAudioSource { get; private set; }
+        public float volumeEffectsAudioSource { get; private set; }
+        public float volumeNotificationAudioSource { get; private set; }
+
+
+        private const string pathData = "/AudioGeneralSettings.fun";
+
+
         public override void OnCreate()
         {
             base.OnCreate();
@@ -18,31 +24,33 @@ namespace Lessons.Architecture
 
         public override void Initialize()
         {
-            if (File.Exists(Application.persistentDataPath + "/VolumeSounds.fun"))
+            if (File.Exists(Application.persistentDataPath + pathData))
             {
                 VolumeSounds volumeSounds = GetSettingsData();
-                volumeBackgroundAudioSource = volumeSounds.volumeBackgroundAudioSource;
-                volumeEffectsAudioSource = volumeSounds.volumeEffectsAudioSource;
+
+                SetData(volumeSounds.volumeBackgroundAudioSource, volumeSounds.volumeEffectsAudioSource, volumeSounds.volumeNotificationAudioSource);
             }
             else
             {
+                SetData(1, 1, 0.5f);
                 Save();
             }
         }
 
-        public void SetData(float volumeBackground, float volumeEffects)
+        public void SetData(float volumeBackground, float volumeEffects, float volumeNotification)
         {
             this.volumeBackgroundAudioSource = volumeBackground;
             this.volumeEffectsAudioSource = volumeEffects;
+            this.volumeNotificationAudioSource = volumeNotification;
         }
 
         public override void Save()
         {
             BinaryFormatter binaryFormatter = new BinaryFormatter();
-            string path = Application.persistentDataPath + "/VolumeSounds.fun";
+            string path = Application.persistentDataPath + pathData;
             FileStream stream = new FileStream(path, FileMode.Create);
 
-            VolumeSounds settingsData = new(volumeBackgroundAudioSource, volumeEffectsAudioSource);
+            VolumeSounds settingsData = new(volumeBackgroundAudioSource, volumeEffectsAudioSource, volumeNotificationAudioSource);
 
             binaryFormatter.Serialize(stream, settingsData);
             stream.Close();
@@ -50,7 +58,7 @@ namespace Lessons.Architecture
 
         public VolumeSounds GetSettingsData()
         {
-            string path = Application.persistentDataPath + "/VolumeSounds.fun";
+            string path = Application.persistentDataPath + pathData;
             if (File.Exists(path))
             {
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
@@ -75,10 +83,13 @@ namespace Lessons.Architecture
         public float volumeBackgroundAudioSource { get; private set; }
         public float volumeEffectsAudioSource { get; private set; }
 
-        public VolumeSounds(float volumeBackgroundAudio, float volumeEffectsAudioSource)
+        public float volumeNotificationAudioSource { get; private set; }
+
+        public VolumeSounds(float volumeBackgroundAudioSource, float volumeEffectsAudioSource, float volumeNotificationAudioSource)
         {
-            this.volumeBackgroundAudioSource = volumeBackgroundAudio;
+            this.volumeBackgroundAudioSource = volumeBackgroundAudioSource;
             this.volumeEffectsAudioSource = volumeEffectsAudioSource;
+            this.volumeNotificationAudioSource = volumeNotificationAudioSource;
         }
     }
 }

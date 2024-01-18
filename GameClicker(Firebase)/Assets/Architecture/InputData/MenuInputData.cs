@@ -14,13 +14,13 @@ public class MenuInputData : MonoBehaviour
 
     private NotificationInteractor notificationInteractor;
     private AudioInteractor audioInteractor;
-    private SettingsInteractor settingsInteractor;
+    private GeneralSettingsInteractor settingsInteractor;
 
     public void Initialize()
     {
         audioInteractor = Game.GetInteractor<AudioInteractor>();
         notificationInteractor = Game.GetInteractor<NotificationInteractor>();
-        settingsInteractor = Game.GetInteractor<SettingsInteractor>();
+        settingsInteractor = Game.GetInteractor<GeneralSettingsInteractor>();
 
         audioInteractor.SetData(audioManager, "Menu");
         notificationInteractor.SetData(notification, notificationControl);

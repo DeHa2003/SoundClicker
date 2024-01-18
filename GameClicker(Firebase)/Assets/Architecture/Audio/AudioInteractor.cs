@@ -18,14 +18,19 @@ namespace Lessons.Architecture
             audioManager.PlayBackgroundSound(nameClip);
         }
 
-        public void PlayOtherSound(AudioSource audio, string clipName, float volume, float spatialBlend = 0)
-        {
-            audioManager.PlayOtherSound(audio, clipName, volume, spatialBlend);
-        }
-
         public void PlayEffectSound(string nameClip)
         {
             audioManager.PlayEffectSound(nameClip);
+        }
+
+        public void PlayNotificationSound(string nameClip)
+        {
+            audioManager.PlayNotificationSound(nameClip);
+        }
+
+        public void PlayOtherSound(AudioSource audio, string clipName, float volume, float spatialBlend = 0)
+        {
+            audioManager.PlayOtherSound(audio, clipName, volume, spatialBlend);
         }
     }
 }

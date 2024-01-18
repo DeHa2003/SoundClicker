@@ -13,29 +13,32 @@ public class Sound : MonoBehaviour, IPointerDownHandler
 
     [SerializeField] private AudioSource m_AudioSource;
     [SerializeField] private AudioClip clip;
-    [SerializeField] private float volume;
 
+    private float defaultVolume;
     private float defaultPitch;
 
     private ScoreInteractor scoreInteractor;
     public void Initialize()
     {
         scoreInteractor = Game.GetInteractor<ScoreInteractor>();
-
-        m_AudioSource.volume = volume;
     }
 
-    public void SetData(float value)
+    public void SetData(float pitchValue, float volumeValue)
     {
-        defaultPitch = value;
-        m_AudioSource.pitch = value;
+        defaultPitch = pitchValue;
+        defaultVolume = volumeValue;
+
+        m_AudioSource.pitch = pitchValue;
+        m_AudioSource.volume = volumeValue;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        scoreInteractor.AddScore(this, 1);
         m_AudioSource.pitch = Random.Range(defaultPitch - 0.02f, defaultPitch + 0.02f);
+        m_AudioSource.volume = Random.Range(defaultVolume - 0.01f, defaultVolume + 0.01f);
         m_AudioSource.PlayOneShot(clip);
+
+        scoreInteractor.AddScore(this, 1);
         OnPlaySound?.Invoke();
     }
 }

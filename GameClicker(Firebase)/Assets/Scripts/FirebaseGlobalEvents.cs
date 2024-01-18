@@ -37,40 +37,40 @@ public class FirebaseGlobalEvents : MonoBehaviour
     private void OnUserSignInToAccount()
     {
         Debug.Log("Авторизовал аккаунт");
-        audioInteractor.PlayEffectSound("Uvedom");
+        audioInteractor.PlayNotificationSound("Success");
         notificationInteractor.CreateNotification("Message", "Вы вошли в аккаунт с почтой <color=#53A5FF>" + authenticationInteractor.Auth.CurrentUser.Email);
     }
 
     private void OnUserSignOutToAccount()
     {
         Debug.Log("Вышел из аккаунта");
-        audioInteractor.PlayEffectSound("Uvedom");
+        audioInteractor.PlayNotificationSound("Success");
         notificationInteractor.CreateNotification("Message", "Вы вышли из аккаунта");
     }
 
     private void OnUserRegisterAccount()
     {
         Debug.Log("Зарегистрировал аккаунт");
-        audioInteractor.PlayEffectSound("Uvedom");
+        audioInteractor.PlayNotificationSound("Success");
         notificationInteractor.CreateNotification("Message", "Аккаунт с почтой <color=#53A5FF>" + authenticationInteractor.Auth.CurrentUser.Email + "</color> был зарегистрирован");
     }
 
     private void OnUserDeleteAccount()
     {
         Debug.Log("Удалил аккаунт");
-        audioInteractor.PlayEffectSound("Uvedom");
+        audioInteractor.PlayNotificationSound("Success");
         notificationInteractor.CreateNotification("Message", "Аккаунт с почтой <color=#53A5FF>" + authenticationInteractor.GetEmail() + "</color> был удалён");
     }
 
     private void OnErrorSignIn()
     {
-        audioInteractor.PlayEffectSound("Error");
+        audioInteractor.PlayNotificationSound("Error");
         notificationInteractor.CreateNotification("<color=#ff0000>Error</color>", "Ошибка авторизации");
     }
 
     private void OnErrorRegister()
     {
-        audioInteractor.PlayEffectSound("Error");
+        audioInteractor.PlayNotificationSound("Error");
         notificationInteractor.CreateNotification("<color=#ff0000>Error</color>", "Ошибка регистрации");
     }
 }

@@ -12,9 +12,9 @@ public class UserData : MonoBehaviour
 {
     public static UserData instance;
 
-    private Action OnSuccesGetName;
-
     private readonly Regex regex = new("^[a-zA-Zа-яА-Я0-9]*$");
+
+    Action OnSuccesGetName = null;
 
     private WordRandomizerInteractor randomizerInteractor;
     private UserInteractor userInteractor;
@@ -111,21 +111,21 @@ public class UserData : MonoBehaviour
         if(userInteractor.NameUser == newNickname)
         {
             notificationInteractor.CreateNotification("<color=#ff0000>Error</color>", "Вы не изменили ник");
-            audioInteractor.PlayEffectSound("Error");
+            audioInteractor.PlayNotificationSound("Error");
             return;
         }
 
         if (!regex.IsMatch(newNickname))
         {
             notificationInteractor.CreateNotification("<color=#ff0000>Error</color>", "Можно использовать только цифры, английские и русские буквы");
-            audioInteractor.PlayEffectSound("Error");
+            audioInteractor.PlayNotificationSound("Error");
             return;
         }
 
         if (newNickname.Length < 3 || newNickname.Length > 15)
         {
             notificationInteractor.CreateNotification("<color=#ff0000>Error</color>", "Количество символов не меньше 3 и не больше 15");
-            audioInteractor.PlayEffectSound("Error");
+            audioInteractor.PlayNotificationSound("Error");
             return;
         }
 
@@ -134,7 +134,7 @@ public class UserData : MonoBehaviour
             authenticationInteractor.databaseReference.Child("Users").Child(authenticationInteractor.Auth.CurrentUser.UserId).Child("Name").SetValueAsync(newNickname);
         }
 
-        audioInteractor.PlayEffectSound("Uvedom");
+        audioInteractor.PlayNotificationSound("Success");
         notificationInteractor.CreateNotification("Message", "Новый никнейм - <color=#53A5FF>" + newNickname);
 
         userInteractor.SetData(newNickname);

@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class AudioManager : MonoBehaviour
 {
     [Header("Audio resources")]
     [SerializeField] private AudioSource backgroundSource;
     [SerializeField] private AudioSource effectSource;
+    [SerializeField] private AudioSource notificationSource;
     [SerializeField] private AudioSource otherSound;
     [Header("Audio clips")]
     [SerializeField] private AudioClip[] backgroundClips;
     [SerializeField] private AudioClip[] otherClips;
+    [SerializeField] private AudioClip[] notificationClips;
 
 
     public void PlayBackgroundSound(string clipName)
@@ -30,6 +33,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayNotificationSound(string clipName)
+    {
+        PlaySound(clipName, notificationClips, notificationSource);
+    }
+
     public void PlayOtherSound(AudioSource audioSource, string clipName, float volume, float spatialBlend)
     {
         if(volume <= effectSource.volume)
@@ -41,6 +49,7 @@ public class AudioManager : MonoBehaviour
             audioSource.volume = effectSource.volume;
         }
         audioSource.spatialBlend = spatialBlend;
+
         PlaySound(clipName, otherClips, audioSource);
     }
 
@@ -49,6 +58,11 @@ public class AudioManager : MonoBehaviour
     public void ChangeVolumeBackgroundSound(float value)
     {
         ChangeVolume(backgroundSource, value);
+    }
+
+    public void ChangeVolumeNotification(float value)
+    {
+        ChangeVolume(notificationSource, value);
     }
 
     public void ChangeVolumeEffectsSound(float value)

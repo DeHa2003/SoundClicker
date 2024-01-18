@@ -13,11 +13,11 @@ public class SoundsManager : MonoBehaviour
     [SerializeField] private Sound ride;
     [SerializeField] private Sound crash;
 
-    private SettingsInteractor settingsInteractor;
+    private InstrumentsSettingsInteractor instrumentsSettingsInteractor;
 
     public void Initialize()
     {
-        settingsInteractor = Game.GetInteractor<SettingsInteractor>();
+        instrumentsSettingsInteractor = Game.GetInteractor<InstrumentsSettingsInteractor>();
 
         SetData();
         InitializeInstruments();
@@ -25,13 +25,13 @@ public class SoundsManager : MonoBehaviour
 
     private void SetData()
     {
-        bass.SetData(settingsInteractor.pitchBass);
-        bass_2.SetData(settingsInteractor.pitchBass_2);
-        tenorTom.SetData(settingsInteractor.pitchTenorTom);
-        altTom.SetData(settingsInteractor.pitchAltTom);
-        hayHet.SetData(settingsInteractor.pitchHayHet);
-        ride.SetData(settingsInteractor.pitchRide);
-        crash.SetData(settingsInteractor.pitchCrash);
+        bass.SetData(instrumentsSettingsInteractor.pitchBass, instrumentsSettingsInteractor.volumeBass);
+        bass_2.SetData(instrumentsSettingsInteractor.pitchBass_2, instrumentsSettingsInteractor.volumeBass_2);
+        tenorTom.SetData(instrumentsSettingsInteractor.pitchTenorTom, instrumentsSettingsInteractor.volumeTenorTom);
+        altTom.SetData(instrumentsSettingsInteractor.pitchAltTom, instrumentsSettingsInteractor.volumeAltTom);
+        hayHet.SetData(instrumentsSettingsInteractor.pitchHayHet, instrumentsSettingsInteractor.volumeHayHet);
+        ride.SetData(instrumentsSettingsInteractor.pitchRide, instrumentsSettingsInteractor.volumeRide);
+        crash.SetData(instrumentsSettingsInteractor.pitchCrash, instrumentsSettingsInteractor.volumeCrash);
     }
 
     private void InitializeInstruments()

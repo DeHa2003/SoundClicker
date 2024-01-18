@@ -15,7 +15,10 @@ using UnityEngine;
         var interactorsMap = new Dictionary<Type, Interactor>();
 
         CreateInteractor<FirebaseAuthenticationInteractor>(interactorsMap);
-        CreateInteractor<SettingsInteractor>(interactorsMap);
+
+        CreateInteractor<GeneralSettingsInteractor>(interactorsMap);
+        CreateInteractor<InstrumentsSettingsInteractor>(interactorsMap);
+
         CreateInteractor<AudioInteractor>(interactorsMap);
         CreateInteractor<NotificationInteractor>(interactorsMap);
         CreateInteractor<ScoreInteractor>(interactorsMap);
@@ -32,11 +35,12 @@ using UnityEngine;
     {
         var repositoriesMap = new Dictionary<Type, Repository>();
 
+        CreateRepository<GeneralSettingsRepository>(repositoriesMap);
+        CreateRepository<InstrumentsSettingsRepository>(repositoriesMap);
+
         CreateRepository<UserRepository>(repositoriesMap);
         CreateRepository<ScoreRepository>(repositoriesMap);
         CreateRepository<SongRepository>(repositoriesMap);
-        CreateRepository<AudioVolumeRepository>(repositoriesMap);
-        CreateRepository<PitchInstrumentsRepository>(repositoriesMap);
         //CreateRepository<ShopRepository>(repositoriesMap);
 
         return repositoriesMap;
